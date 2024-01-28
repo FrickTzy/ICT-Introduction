@@ -21,7 +21,7 @@ class Info:
         self.img = PicImg()
         self.first_info = Label(frame, text="-  You can call me Arnoco", bg=BG_COLOR, fg="white", font=norm_font(frame))
         self.second_info = Label(frame, text="-  I'm 15 years old", bg=BG_COLOR, fg="white", font=norm_font(frame))
-        self.third_info = Label(frame, text="-  I want to become a Software \nEngineer                             ",
+        self.third_info = Label(frame, text="-  I want to become a Software \nDeveloper                            ",
                                 bg=BG_COLOR, fg="white", font=norm_font(frame))
         self.photo = Label(frame, image=self.img.pic, bg=BG_COLOR)
         self.place_info()

@@ -1,5 +1,5 @@
 from Elements import *
-import Music
+from Backend import music
 
 
 class LogoChange:
@@ -10,23 +10,23 @@ class LogoChange:
     @classmethod
     def change_song_name(cls, var: bool = False):
         if var:
-            main.variables.song_name.set(Music.set_song_title())
+            main.variables.song_name.set(music.set_song_title())
         else:
-            if Music.switch != cls.switch:
-                main.variables.song_name.set(Music.set_song_title())
-                cls.switch = Music.switch
+            if music.switch != cls.switch:
+                main.variables.song_name.set(music.set_song_title())
+                cls.switch = music.switch
                 main.window.update()
 
     @staticmethod
     def change_logo():
-        if Music.play:
+        if music.play:
             main.buttons.pause_button.config(image=main.logos.pause_image)
         else:
             main.buttons.pause_button.config(image=main.logos.play_image)
 
     @classmethod
     def change_vol(cls):
-        Music.change_volume(main.misc.volume_scale.get())
+        music.change_volume(main.misc.volume_scale.get())
         cls.vol_repeat = main.window.after(10, cls.change_vol)
 
     @classmethod
@@ -46,16 +46,16 @@ class LogoChange:
 
     @classmethod
     def shortcuts(cls):
-        main.window.bind("<Right>", lambda event: [Music.change_music(main.window, True),
+        main.window.bind("<Right>", lambda event: [music.change_music(main.window, True),
                                                    cls.change_song_name(True), cls.change_logo()], )
-        main.window.bind("<Left>", lambda event: [Music.change_music(main.window, False),
+        main.window.bind("<Left>", lambda event: [music.change_music(main.window, False),
                                                   cls.change_song_name(True), cls.change_logo()], )
-        main.window.bind("<space>", lambda event: [Music.play_music(),
+        main.window.bind("<space>", lambda event: [music.play_music(),
                                                    cls.change_logo()])
 
     @classmethod
     def idle_executions(cls):
-        main.window.after(6, lambda: [Music.que(), cls.change_song_name(), cls.idle_executions()])
+        main.window.after(6, lambda: [music.que(), cls.change_song_name(), cls.idle_executions()])
 
 
 class Main(Window):
@@ -67,12 +67,12 @@ class Main(Window):
         self.tabs = Tabs(self.window, self.variables.style)
         self.frames = FrameElements(self)
         self.misc = MiscElements(self.frames, self, Main)
-        self.buttons = ButtonElements(self, Music, LogoChange)
+        self.buttons = ButtonElements(self, music, LogoChange)
         self.labels = LabelElements(self)
         self.set_var()
 
     def set_var(self):
-        self.variables.song_name.set(Music.set_song_title())
+        self.variables.song_name.set(music.set_song_title())
         self.misc.volume_scale.set(0.8)
 
     def style_config(self):
@@ -103,7 +103,7 @@ class Main(Window):
 
     @staticmethod
     def background_executions():
-        Music.music()
+        music.music()
         LogoChange.shortcuts()
         LogoChange.idle_executions()
 
