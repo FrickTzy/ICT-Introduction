@@ -2,15 +2,15 @@
 Konnichiwa, Arnoco desu
 
 
-![Preview_1](Preview/Preview_3.png)
+![Preview_1](Preview/Preview_1.png)
 
 __________________________________
 
-![Preview_2](Preview/Preview_1.png)
+![Preview_2](Preview/Preview_2.png)
 
 __________________________________
 
-![Preview_3](Preview/Preview_2.png)
+![Preview_3](Preview/Preview_3.png)
 
 
 
